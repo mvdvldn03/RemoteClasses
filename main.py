@@ -27,42 +27,30 @@ def get_classes(class_num):
 
 #Gets the day's schedule, redacted website
 def get_schedule(today):
-    driver.get(website)
+    driver.get("https://wadaily.net")
     text = driver.find_element_by_xpath("//div[@class='Rotation']").text
     ind1 = text.index("it's")
     ind2 = text.index("rotation")
     rotation = text[ind1+5:ind2-1]
+    schedule_dict = {
+        "Day 1": ["1 08:40", "2 09:40", "3 10:40", "4 12:55", "5 13:55"],
+        "Day 2": ["6 08:40", "7 09:40", "1 010:40", "2 12:55", "3 13:55"],
+        "Day 3": ["4 08:40", "5 09:40", "6 010:40", "7 12:55", "1 13:55"],
+        "Day 4": ["2 08:40", "3 09:40", "4 10:40", "5 12:55", "6 13:55"],
+        "Day 5": ["7 08:40", "1 09:40", "2 10:40", "3 12:55", "4 13:55"],
+        "Day 6": ["5 08:40", "6 09:40", "7 10:40", "1 12:55", "2 13:55"],
+        "Day 7": ["3 08:40", "4 09:40", "5 10:40", "6 12:55", "7 13:55"],
+        "A_Block": ["1 08:40", "2 10:00", "3 12:35", "4 13:55"],
+        "Late_B_Block": ["5 10:10", "6 12:35", "7 13:55"]
+    }
     if today.weekday() > 4:
-        print("NO SCHOOL")
+        print("NO SCHOOL\n")
         return []
-    if rotation == "Day 1":
+    try:
+        s = schedule_dict[rotation]
         print(rotation + "\n")
-        return ["1 08:40", "2 09:40", "3 10:40", "4 12:55", "5 13:55"]
-    elif rotation == "Day 2":
-        print(rotation + "\n")
-        return ["6 08:40", "7 09:40", "1 010:40", "2 12:55", "3 13:55"]
-    elif rotation == "Day 3":
-        print(rotation + "\n")
-        return ["4 08:40", "5 09:40", "6 010:40", "7 12:55", "1 13:55"]
-    elif rotation == "Day 4":
-        print(rotation + "\n")
-        return ["2 08:40", "3 09:40", "4 10:40", "5 12:55", "6 13:55"]
-    elif rotation == "Day 5":
-        print(rotation + "\n")
-        return ["7 08:40", "1 09:40", "2 10:40", "3 12:55", "4 13:55"]
-    elif rotation == "Day 6":
-        print(rotation + "\n")
-        return ["5 08:40", "6 09:40", "7 10:40", "1 12:55", "2 13:55"]
-    elif rotation == "Day 7":
-        print(rotation + "\n")
-        return ["3 08:40", "4 09:40", "5 10:40", "6 12:55", "7 13:55"]
-    elif rotation == "A_Block":
-        print(rotation + "\n")
-        return ["1 08:40", "2 10:00", "3 12:35", "4 13:55"]
-    elif rotation == "Late_B_Block":
-        print(rotation + "\n")
-        return ["5 10:10", "6 12:35", "7 13:55"]
-    else:
+        return s
+    except:
         print("NO SCHOOL + \n")
         return []
 
