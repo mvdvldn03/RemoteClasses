@@ -5,11 +5,11 @@ from subprocess import Popen, PIPE
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 
-#Creation of headless chromedriver for get_schedule(), fill in your own USER_AGENT
+#Creation of headless chromedriver for get_schedule(), fill in your own User Agent for proper function
 options = Options()
 options.add_argument("--headless")
 options.add_argument("--window-size=1920x1080")
-options.add_argument("user-agent=USER_AGENT")
+options.add_argument("user-agent=____")
 driver = webdriver.Chrome(options=options, executable_path='./chromedriver')
 
 #Asks for user input of zoom links for class_num classes
@@ -32,6 +32,7 @@ def get_schedule(today):
     ind1 = text.index("it's")
     ind2 = text.index("rotation")
     rotation = text[ind1+5:ind2-1]
+    
     schedule_dict = {
         "Day 1": ["1 08:40", "2 09:40", "3 10:40", "4 12:55", "5 13:55"],
         "Day 2": ["6 08:40", "7 09:40", "1 010:40", "2 12:55", "3 13:55"],
@@ -43,6 +44,7 @@ def get_schedule(today):
         "A_Block": ["1 08:40", "2 10:00", "3 12:35", "4 13:55"],
         "Late_B_Block": ["5 10:10", "6 12:35", "7 13:55"]
     }
+    
     if today.weekday() > 4:
         print("NO SCHOOL\n")
         return []
