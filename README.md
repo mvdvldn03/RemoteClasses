@@ -1,2 +1,6 @@
 # remote_classes
-Joins classes on zoom via AppleScript based on a given schedule for the day
+A quarantine-inspired program using Python and Applescript to efficiently log into Zoom classes according to schedule with no necessary user interaction 
+
+Tools Used:  
+Python  
+Applescript  
